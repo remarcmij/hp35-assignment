@@ -1,43 +1,56 @@
 # HP-35 Scientific Calculator Project
 
-![HP-35 Scientific Calculator](http://hpmemoryproject.org/pict/wall_b/hp35.jpg)
+![HP-35 Scientific Calculator](./docs/assets/HP-35_Red_Dot.jpg)
 
 The HP-35 was Hewlett-Packard's first pocket calculator and the world's first scientific pocket calculator. Read more on [Wikipedia](https://en.wikipedia.org/wiki/HP-35).
 
 ## Project Assignment
 
-The goal of this project is to reverse engineer the functionality of the HP 35 calculator as a React application.
+The goal of this project is to reverse engineer the functionality of the HP 35 calculator as a React application. A starter set of main components for application logic and user interface is provided. 
 
-Optionally, the base HP-35 functionality may be enhanced with (portions of) the functionality of the later and more advanced, programmable HP-25 calculator, or, taking it even further, the capabilities of current HP graphing calculators.
+## Working with the HP-35
 
-## Reverse Engineering the HP-35
+The HP-35 works differently from most other (scientific) calculators that you may come across. Specifically, there are no parentheses keys `(` and `)` for working with algebraic expressions. Instead, the HP-35 uses [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation), more often simply referred to as **RPN**. RPN _"is a mathematical notation in which operators follow their operands."_ A _stack_ is used to store intermediate results.
 
-The best way to understand how the HP-35 works is to read the user manual and experiment with an HP Scientific Calculator emulator in [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) mode. Although there is no emulator for the original HP-35, there are free HP Prime Calculator apps for Android, iOS, Windows and Mac. The functionality of these apps is a superset of that of the original HP-35 but the base functionality is available and all emulators can be configured to operate in RPN mode (the only mode available on the original HP-35).
+Recommended viewing on YouTube:
+
+- [The Joys of RPN](https://youtu.be/cPKg_JtI-Ys)
+- [Reverse Polish Notation and The Stack - Computerphile](https://youtu.be/7ha78yWRDlE)
+
+Review the HP-35 original manual:
+
+- [HP-35 Instruction Manual](http://www.cs.columbia.edu/)
+
+Experiment with a fully worked out example of this project: 
+
+- https://hp35-calc.netlify.app
+
+## Implementation Details
+
+When trying to rebuild a physical device such as the HP-35 in software a useful first approach is to try and follow the design of the hardware. In the case of the HP-35, the main hardware components are:
+
+1. Keypad
+2. Display
+3. Control logic (execute calculations)
+
+If we would try and build a hardware HP-35 with an Arduino board it might look like this:
+
+![HP35 Arduino](./docs/assets/HP35-Arduino.jpg)
+
+This same architecture can be found in the starter application. For the Keypad and Display there are corresponding `<Keypad>` and `<Display>` React components. For implementing the control logic a `MasterController` ES6 class is provided.
+
+For state management [redux](https://redux.js.org/) will be used.
+
+CSS styling will be done using [styled-components](https://styled-components.com/). 
+
+Correct functioning of the control logic should be demonstrated with appropriate unit tests (examples provided). Unit testing of the user interface is optional.
+
+The control logic (`MasterController` and any of its subcomponents) should be implemented in pure JavaScript without any external dependencies (no imports of React, redux). The user interface should be connected to the control logic using redux actions and state.
+
+Although the app should implement the HP-35 functionality as specified in the HP-35 Instruction Manual, it should _not_ try and mimic the retro-look of the original HP-35. Instead a modern design should be used that favors functionality over form.
+
+The standard JavaScript `Number` should be used, including where needed, its [exponential notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential).
 
 ### RPN stack
 
-You'll find some hints on how to elegantly handle the RPN stack in your application state [here](https://github.com/remarcmij/calculator-project-class8/blob/master/RPN%20stack.md).
-
-### Standardized execute
-
-In order to enable cross-project unit tests and programmability we need the various projects to standardize on the way the calculator functions can be invoked.
-This is documented [here](https://github.com/remarcmij/calculator-project-class8/blob/master/Standarized%20execute.md).
-
-### Rydberg test
-
-Your calculator should be able to compute the Rydberg constant from a number of fundamental physical constants. Please refer to [_Rydberg constant_](https://github.com/remarcmij/calculator-project-class8/blob/master/Rydberg%20constant.md) for full details.
-
-[HP-35 Instruction Manual](./docs/assets/hp35.pdf)
-
-http://www.cs.columbia.edu/~sedwards/hp35colr.pdf
-
-### HP-25 Instruction Manual
-
-http://sliderulemuseum.com/Calculators/HP-25_OwnersHandbook.pdf
-
-### Free HP Prime Apps
-
-- [For Android](https://play.google.com/store/apps/details?id=com.hp.primecalculator.free) (Google Play)
-- [For iOS](https://itunes.apple.com/us/app/hp-prime-free/id1208226883?mt=8) (App Store)
-- For Windows and Mac: ftp://ftp.hp.com/pub/calculators/Prime/
-- [HP Prime Manual](http://h10032.www1.hp.com/ctg/Manual/c04773072) (for Windows version)
+You'll find some hints on how to elegantly handle the RPN stack in your application [here](./docs/RPN-stack.md).
