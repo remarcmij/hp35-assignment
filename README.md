@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HP-35 Scientific Calculator Project
 
-## Available Scripts
+![HP-35 Scientific Calculator](http://hpmemoryproject.org/pict/wall_b/hp35.jpg)
 
-In the project directory, you can run:
+The HP-35 was Hewlett-Packard's first pocket calculator and the world's first scientific pocket calculator. Read more on [Wikipedia](https://en.wikipedia.org/wiki/HP-35).
 
-### `npm start`
+## Project Assignment
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The goal of this project is to reverse engineer the functionality of the HP 35 calculator as a React application.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Optionally, the base HP-35 functionality may be enhanced with (portions of) the functionality of the later and more advanced, programmable HP-25 calculator, or, taking it even further, the capabilities of current HP graphing calculators.
 
-### `npm test`
+## Reverse Engineering the HP-35
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The best way to understand how the HP-35 works is to read the user manual and experiment with an HP Scientific Calculator emulator in [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) mode. Although there is no emulator for the original HP-35, there are free HP Prime Calculator apps for Android, iOS, Windows and Mac. The functionality of these apps is a superset of that of the original HP-35 but the base functionality is available and all emulators can be configured to operate in RPN mode (the only mode available on the original HP-35).
 
-### `npm run build`
+### RPN stack
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You'll find some hints on how to elegantly handle the RPN stack in your application state [here](https://github.com/remarcmij/calculator-project-class8/blob/master/RPN%20stack.md).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Standardized execute
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In order to enable cross-project unit tests and programmability we need the various projects to standardize on the way the calculator functions can be invoked.
+This is documented [here](https://github.com/remarcmij/calculator-project-class8/blob/master/Standarized%20execute.md).
 
-### `npm run eject`
+### Rydberg test
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Your calculator should be able to compute the Rydberg constant from a number of fundamental physical constants. Please refer to [_Rydberg constant_](https://github.com/remarcmij/calculator-project-class8/blob/master/Rydberg%20constant.md) for full details.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[HP-35 Instruction Manual](./docs/assets/hp35.pdf)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+http://www.cs.columbia.edu/~sedwards/hp35colr.pdf
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### HP-25 Instruction Manual
 
-## Learn More
+http://sliderulemuseum.com/Calculators/HP-25_OwnersHandbook.pdf
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Free HP Prime Apps
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [For Android](https://play.google.com/store/apps/details?id=com.hp.primecalculator.free) (Google Play)
+- [For iOS](https://itunes.apple.com/us/app/hp-prime-free/id1208226883?mt=8) (App Store)
+- For Windows and Mac: ftp://ftp.hp.com/pub/calculators/Prime/
+- [HP Prime Manual](http://h10032.www1.hp.com/ctg/Manual/c04773072) (for Windows version)
