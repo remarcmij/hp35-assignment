@@ -1,5 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+
+const Container = styled.section`
+  margin: 4px;
+`;
 
 const Display = () => {
   const {
@@ -7,12 +12,12 @@ const Display = () => {
   } = useSelector((state) => state.logic);
 
   return (
-    <section>
+    <Container>
       <div>t: {t}</div>
       <div>z: {z}</div>
       <div>y: {y}</div>
       <div>x: {x}</div>
-    </section>
+    </Container>
   );
 };
 
